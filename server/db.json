@@ -1,0 +1,42 @@
+{
+  "user": [
+    {
+      "id": 1000,
+      "name": "哈哈",
+      "age": 20,
+      "gender": "female"
+    },
+    {
+      "id": 10001,
+      "name": "呵呵",
+      "age": 20,
+      "gender": "male"
+    },
+    {
+      "name": "李四",
+      "age": 20,
+      "gender": "female",
+      "id": 10002
+    },
+    {
+      "name": "快快",
+      "age": 10,
+      "gender": "male",
+      "id": 10003
+    }
+  ],
+  "book": [
+    {
+      "id": 1000,
+      "name": "JavaScript从入门到精通",
+      "price": 100,
+      "owner_id": 10000
+    },
+    {
+      "id": 1001,
+      "name": "JavaScript从入门到放弃",
+      "price": 200,
+      "owner_id": 10001
+    }
+  ]
+}
