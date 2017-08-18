@@ -1,9 +1,11 @@
 import React from 'react';
 import FormItem from '../components/FormItem';
 import formProvider from '../utils/formProvider';
+import HomeLayout from '../layouts/HomeLayout'
 
 class UserAdd extends React.Component{
-	handleSubmit(e){
+
+	handleSubmit = (e) => {
 		// 阻止表单submit事件自动跳转页面的动作
 		e.preventDefault();
 
@@ -30,6 +32,8 @@ class UserAdd extends React.Component{
 			// 所以可以使用res.id来判断添加是否成功
 			if(res.id){
 				console.log("添加用户成功");
+				this.props.history.push('/user/list');
+				return;
 			}else{
 				console.log("添加失败");
 			}
@@ -40,44 +44,38 @@ class UserAdd extends React.Component{
 	render(){
 		const {form: {name, age, gender}, onFormChange} = this.props;
 		return (
-			<div>
-				<header>
-					<h1>添加用户</h1>
-				</header>
+			<HomeLayout title="添加用户">
+				<form onSubmit={(e) => this.handleSubmit(e)}>
+					<FormItem label="用户名:" 
+						valid={name.valid} 
+						error={name.error}>
+						<input type="text" 
+									value={name.value} 
+									onChange={(e) => onFormChange('name', e.target.value)} />
+					</FormItem>
 
-				<main>
-					<form onSubmit={(e) => this.handleSubmit(e)}>
-						<FormItem label="用户名:" 
-						  valid={name.valid} 
-							error={name.error}>
+					<FormItem label="年龄:" 
+							valid={age.valid} 
+							error={age.error}>
 							<input type="text" 
-						       value={name.value} 
-									 onChange={(e) => onFormChange('name', e.target.value)} />
-						</FormItem>
+									value={age.value||''} 
+									onChange={(e) => onFormChange('age', +e.target.value)} />
+					</FormItem>
 
-						<FormItem label="年龄:" 
-						    valid={age.valid} 
-								error={age.error}>
-							 <input type="text" 
-						       value={age.value||''} 
-									 onChange={(e) => onFormChange('age', +e.target.value)} />
-						</FormItem>
-
-						<FormItem label="性别:" 
-						   valid={gender.valid} 
-							 error={gender.error}>
-							 <select value={gender.value} 
-											onChange={(e) => onFormChange('gender', e.target.value)}>
-								<option value="">请选择</option>
-								<option value="male">男</option>
-								<option value="female">女</option>
-							</select>
-						</FormItem>
-						<br/>
-						<input type="submit" value="提交"/>
-					</form>
-				</main>
-			</div>
+					<FormItem label="性别:" 
+							valid={gender.valid} 
+							error={gender.error}>
+							<select value={gender.value} 
+										onChange={(e) => onFormChange('gender', e.target.value)}>
+							<option value="">请选择</option>
+							<option value="male">男</option>
+							<option value="female">女</option>
+						</select>
+					</FormItem>
+					<br/>
+					<input type="submit" value="提交"/>
+				</form>
+			</HomeLayout>
 		)
 	}
 }
