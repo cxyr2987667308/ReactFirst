@@ -12,12 +12,13 @@ ReactDOM.render((
   // </Router>
 	<HashRouter>
 		<div>
-			<Route path="/" component={HomeLayout}></Route>
-			<Switch>
-				<Route exact path="/" component={HomePage}></Route>
-				<Route exact path="/user/add" component={UserAddPage}></Route>
-				<Route exact path="/user/list" component={UserListPage}></Route>
-			</Switch>
+			<HomeLayout title="Welcome">
+				<Switch>
+					<Route exact path="/" component={HomePage}></Route>
+					<Route exact path="/user/add" component={UserAddPage}></Route>
+					<Route exact path="/user/list" component={UserListPage}></Route>
+				</Switch>
+			</HomeLayout>
 		</div>
 	</HashRouter>
 ), document.getElementById('app'));
