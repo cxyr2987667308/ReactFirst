@@ -243,16 +243,16 @@
   ],
   "book": [
     {
-      "id": 1000,
-      "name": "JavaScript从入门到精通",
-      "price": 100,
-      "owner_id": 10000
+      "name": "JavaScript从入门到放弃",
+      "price": 30007,
+      "owner_id": 10006,
+      "id": 1001
     },
     {
-      "id": 1001,
-      "name": "JavaScript从入门到放弃",
-      "price": 200,
-      "owner_id": 10001
+      "name": "55",
+      "price": 55,
+      "owner_id": 10011,
+      "id": 1002
     }
   ]
 }

@@ -44,6 +44,8 @@ class UserList extends React.Component{
 										<td>{user.gender}</td>
 										<td>{user.age}</td>
 										<td>
+											<a href="javascript:void(0)" onClick={() => this.handleAdd()}>新增</a>
+											&nbsp;
 											<a href="javascript:void(0)" onClick={() => this.handleEdit(user)}>编辑</a>
 											&nbsp;
 											<a href="javascript:void(0)" onClick={() => this.handleDel(user)}>删除</a>
@@ -56,6 +58,10 @@ class UserList extends React.Component{
 				</table>
 			</HomeLayout>
 		)
+	}
+
+	handleAdd = () => {
+		this.props.history.push('/user/add');
 	}
 
 	handleEdit = (user) => {

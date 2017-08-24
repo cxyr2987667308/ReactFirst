@@ -6,6 +6,9 @@ import UserAddPage from './pages/UserAdd';
 import UserEditPage from './pages/UserEdit';
 import UserListPage from './pages/UserList';
 import HomeLayout from './layouts/HomeLayout';
+import BookEdit from './pages/BookEdit';
+import BookAdd from './pages/BookAdd';
+import BookListPage from './pages/BookList';
 
 ReactDOM.render((
   // <Router component={UserAddPage}>
@@ -17,6 +20,9 @@ ReactDOM.render((
 			<Route path="/user/add" component={UserAddPage}></Route>
 			<Route path="/user/edit/:id" component={UserEditPage}></Route>
 			<Route path="/user/list" component={UserListPage}></Route>
+			<Route path="/book/add" component={BookAdd}></Route>
+			<Route path="/book/edit/:id" component={BookEdit}></Route>
+			<Route path="/book/list" component={BookListPage}></Route>
 		</Switch>
 	</HashRouter>
 ), document.getElementById('app'));
