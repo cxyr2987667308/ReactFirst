@@ -26,7 +26,7 @@ class UserEdit extends React.Component{
 		return(
 			<HomeLayout title="编辑用户">
 				{
-					user?<UserEditor editTarget={user}/>:'加载中...'
+					user?<UserEditor editTarget={user} history={this.props.history}/>:'加载中...'
 				}
 			</HomeLayout>
 		)

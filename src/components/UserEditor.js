@@ -49,7 +49,7 @@ class UserEditor extends React.Component{
 	}
 
 	componentWillMount = () => {
-		const {editTarget, setFormValues} = this.props;console.log('editTarget',editTarget);
+		const {editTarget, setFormValues} = this.props;console.log('editTarget',setFormValues);
 		if(editTarget){
 			setFormValues(editTarget);
 		}

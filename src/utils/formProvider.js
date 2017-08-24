@@ -28,11 +28,17 @@ function formProvider (fields){
 				let newForm = {...form};
 				for(const field in form){
 					if(form.hasOwnProperty(field)){
-						newForm[field] = {...newForm[field], value: values[field]};
+						if(typeof values[field] !== 'undefined'){console.log('values[field]',values[field]);
+							newForm[field] = {...newForm[field], value: values[field]};
+						}
+						// 正常情况下主动设置的每个字段一定是有效
+						newForm[field].valid = true;
 					}
-					// 正常情况下主动设置的每个字段一定是有效
-					newForm[field].valid = true;
 				}
+
+				this.setState({
+					form: newForm
+				})
 			}
 
 			handleValueChange = (fieldName, value) => {
