@@ -75,7 +75,6 @@ class UserList extends React.Component{
 
 		if(confirmed){
 			del('http://localhost:8080/user/'+user.id)
-			.then(res => res.json())
 			.then(res => {
 				this.setState({
 					userList: this.state.userList.filter(item => item.id !== user.id)

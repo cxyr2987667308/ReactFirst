@@ -28,7 +28,6 @@ class UserEditor extends React.Component{
 				age: age.value,
 				gender: gender.value
 		})
-		.then((res) => res.json())
 		.then((res) => {
 			// 当添加成功时,返回的json对象中应包含一个有效的id字段
 			// 所以可以使用res.id来判断添加是否成功

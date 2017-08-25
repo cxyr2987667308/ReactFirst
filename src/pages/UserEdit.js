@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeLayout from '../layouts/HomeLayout';
 import UserEditor from '../components/UserEditor';
+import { get } from '../utils/request';
 
 class UserEdit extends React.Component{
 	constructor(props){
@@ -12,8 +13,7 @@ class UserEdit extends React.Component{
 
 	componentWillMount(){
 		const userId = this.props.match.params.id;
-		fetch('http://localhost:8080/user/'+userId)
-		.then(res => res.json())
+		get('http://localhost:8080/user/'+userId)
 		.then(res => {
 			this.setState({
 				user: res
@@ -22,7 +22,7 @@ class UserEdit extends React.Component{
 	}
 
 	render(){
-		const {user} = this.state;console.log('res1',user);
+		const {user} = this.state;
 		return(
 			<HomeLayout title="编辑用户">
 				{

@@ -9,7 +9,7 @@ class Login extends React.Component{
 		super();
 	}
 
-	handleSubmit = (e) => {console.log("000");
+	handleSubmit = (e) => {
 		e.preventDefault();
 
 		const {formValid, form: {account, password}} = this.props;

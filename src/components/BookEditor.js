@@ -2,7 +2,7 @@ import React from 'react';
 import FormItem from './FormItem';
 import AutoComplete from './AutoComplete';
 import formProvider from '../utils/formProvider';
-import request from '../utils/request';
+import request, { get } from '../utils/request';
 
 class BookEditor extends React.Component{
 	constructor(props){
@@ -43,7 +43,6 @@ class BookEditor extends React.Component{
         price: price.value,
         owner_id: owner_id.value
     })
-      .then((res) => res.json())
       .then((res) => {
         if (res.id) {
           alert(editType + '书本成功');
@@ -57,8 +56,7 @@ class BookEditor extends React.Component{
   }
 
 	getRecommendUsers = (partialUserId) => {
-		fetch('http://localhost:8080/user?id_like='+partialUserId)
-		.then((res) => res.json())
+		get('http://localhost:8080/user?id_like='+partialUserId)
 		.then((res) => {
 			if(res.length === 1 && res[0].id === partialUserId){
 				// 如果结果只有1条且id与输入的id一致，说明输入的id已经完整了，没必要再设置建议列表

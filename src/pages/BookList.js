@@ -73,7 +73,6 @@ class BookList extends React.Component{
 
 		if(confirmed){
 			del('http://localhost:8080/book/'+book.id)
-			.then(res => res.json())
 			.then(res => {
 				this.setState({
 					bookList: this.state.bookList.filter(item => item.id !== book.id)
