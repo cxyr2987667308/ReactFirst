@@ -9,6 +9,7 @@ class Home extends React.Component{
 				<Link to="/user/list">用户列表</Link>
 				<br/>
 				<Link to="/book/list">图书列表</Link>
+				<div onClick={()=>{console.log(history);return history.go(-1)}}> tiaozhuan</div>	
 			</HomeLayout>
 		)
 	}

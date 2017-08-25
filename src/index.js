@@ -9,6 +9,7 @@ import HomeLayout from './layouts/HomeLayout';
 import BookEdit from './pages/BookEdit';
 import BookAdd from './pages/BookAdd';
 import BookListPage from './pages/BookList';
+import Login from './pages/Login';
 
 ReactDOM.render((
   // <Router component={UserAddPage}>
@@ -17,6 +18,7 @@ ReactDOM.render((
 	<HashRouter>
 		<Switch>
 			<Route exact path="/" component={HomePage}></Route>
+			<Route path="/login" component={Login}></Route>
 			<Route path="/user/add" component={UserAddPage}></Route>
 			<Route path="/user/edit/:id" component={UserEditPage}></Route>
 			<Route path="/user/list" component={UserListPage}></Route>

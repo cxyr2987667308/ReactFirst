@@ -1,6 +1,7 @@
 import React from 'react';
 import FormItem from '../components/FormItem';
 import formProvider from '../utils/formProvider';
+import request from '../utils/request';
 
 class UserEditor extends React.Component{
 	handleSubmit = (e) => {
@@ -22,23 +23,17 @@ class UserEditor extends React.Component{
 			method = 'put';
 		}
 
-		fetch(apiUrl, {
-			method,
-			body: JSON.stringify({
+		request(method, apiUrl, {
 				name: name.value,
 				age: age.value,
 				gender: gender.value
-			}),
-			headers: {
-				'Content-Type': 'application/json'
-			}
 		})
 		.then((res) => res.json())
 		.then((res) => {
 			// 当添加成功时,返回的json对象中应包含一个有效的id字段
 			// 所以可以使用res.id来判断添加是否成功
 			if(res.id){
-				console.log(editType+"用户成功");console.log('history',history);
+				console.log(editType+"用户成功");
 				history.push('/user/list');
 				return;
 			}else{
