@@ -44,38 +44,36 @@ class UserAdd extends React.Component{
 	render(){
 		const {form: {name, age, gender}, onFormChange} = this.props;
 		return (
-			<HomeLayout title="添加用户">
-				<form onSubmit={(e) => this.handleSubmit(e)}>
-					<FormItem label="用户名:" 
-						valid={name.valid} 
-						error={name.error}>
+			<form onSubmit={(e) => this.handleSubmit(e)}>
+				<FormItem label="用户名:" 
+					valid={name.valid} 
+					error={name.error}>
+					<input type="text" 
+								value={name.value} 
+								onChange={(e) => onFormChange('name', e.target.value)} />
+				</FormItem>
+
+				<FormItem label="年龄:" 
+						valid={age.valid} 
+						error={age.error}>
 						<input type="text" 
-									value={name.value} 
-									onChange={(e) => onFormChange('name', e.target.value)} />
-					</FormItem>
+								value={age.value||''} 
+								onChange={(e) => onFormChange('age', +e.target.value)} />
+				</FormItem>
 
-					<FormItem label="年龄:" 
-							valid={age.valid} 
-							error={age.error}>
-							<input type="text" 
-									value={age.value||''} 
-									onChange={(e) => onFormChange('age', +e.target.value)} />
-					</FormItem>
-
-					<FormItem label="性别:" 
-							valid={gender.valid} 
-							error={gender.error}>
-							<select value={gender.value} 
-										onChange={(e) => onFormChange('gender', e.target.value)}>
-							<option value="">请选择</option>
-							<option value="male">男</option>
-							<option value="female">女</option>
-						</select>
-					</FormItem>
-					<br/>
-					<input type="submit" value="提交"/>
-				</form>
-			</HomeLayout>
+				<FormItem label="性别:" 
+						valid={gender.valid} 
+						error={gender.error}>
+						<select value={gender.value} 
+									onChange={(e) => onFormChange('gender', e.target.value)}>
+						<option value="">请选择</option>
+						<option value="male">男</option>
+						<option value="female">女</option>
+					</select>
+				</FormItem>
+				<br/>
+				<input type="submit" value="提交"/>
+			</form>
 		)
 	}
 }

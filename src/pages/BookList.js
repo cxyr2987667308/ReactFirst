@@ -22,41 +22,39 @@ class BookList extends React.Component{
 	render(){
 		const {bookList} = this.state;
 		return(
-			<HomeLayout title="图书列表">
-				<table>
-					<thead>
-						<tr>
-							<th>图书ID</th>
-							<th>书名</th>
-							<th>价格</th>
-							<th>所有者ID</th>
-							<th>操作</th>
-						</tr>
-					</thead>
+			<table>
+				<thead>
+					<tr>
+						<th>图书ID</th>
+						<th>书名</th>
+						<th>价格</th>
+						<th>所有者ID</th>
+						<th>操作</th>
+					</tr>
+				</thead>
 
-					<tbody>
-						{
-							(bookList||[]).map((book) => {
-								return(
-									<tr key={book.id}>
-										<td>{book.id}</td>
-										<td>{book.name}</td>
-										<td>&yen;{book.price}</td>
-										<td>{book.owner_id}</td>
-										<td>
-											<a href="javascript:void(0)" onClick={() => this.handleAdd()}>新增</a>
-											&nbsp;
-											<a href="javascript:void(0)" onClick={() => this.handleEdit(book)}>编辑</a>
-											&nbsp;
-											<a href="javascript:void(0)" onClick={() => this.handleDel(book)}>删除</a>
-										</td>
-									</tr>
-								)
-							})
-						}
-					</tbody>
-				</table>
-			</HomeLayout>
+				<tbody>
+					{
+						(bookList||[]).map((book) => {
+							return(
+								<tr key={book.id}>
+									<td>{book.id}</td>
+									<td>{book.name}</td>
+									<td>&yen;{book.price}</td>
+									<td>{book.owner_id}</td>
+									<td>
+										<a href="javascript:void(0)" onClick={() => this.handleAdd()}>新增</a>
+										&nbsp;
+										<a href="javascript:void(0)" onClick={() => this.handleEdit(book)}>编辑</a>
+										&nbsp;
+										<a href="javascript:void(0)" onClick={() => this.handleDel(book)}>删除</a>
+									</td>
+								</tr>
+							)
+						})
+					}
+				</tbody>
+			</table>
 		)
 	}
 

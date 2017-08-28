@@ -5,9 +5,7 @@ import UserEditor from '../components/UserEditor';
 class UserAdd extends React.Component{
 	render(){
 		return(
-			<HomeLayout title='添加用户'>
-				<UserEditor history={this.props.history}/>
-			</HomeLayout>
+			<UserEditor history={this.props.history}/>
 		)
 	}
 }

@@ -24,11 +24,11 @@ class UserEdit extends React.Component{
 	render(){
 		const {user} = this.state;
 		return(
-			<HomeLayout title="编辑用户">
+			<div>
 				{
 					user?<UserEditor editTarget={user} history={this.props.history}/>:'加载中...'
 				}
-			</HomeLayout>
+			</div>
 		)
 	}
 }

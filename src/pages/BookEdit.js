@@ -24,11 +24,11 @@ class BookEdit extends React.Component{
 	render(){
 		const {book} = this.state;
 		return(
-			<HomeLayout title="编辑图书">
+			<div>
 				{
 					book?<BookEditor editTarget={book} history={this.props.history}/>:'加载中...'
 				}
-			</HomeLayout>
+			</div>
 		)
 	}
 }

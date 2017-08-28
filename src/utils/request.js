@@ -1,5 +1,3 @@
-import {hashHistory} from 'react-router';
-
 export default function request(method, url, body){
 	method = method.toUpperCase();
 	if(method === 'GET'){
