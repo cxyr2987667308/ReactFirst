@@ -1,5 +1,4 @@
 import React from 'react';
-import HomeLayout from '../layouts/HomeLayout';
 import UserEditor from '../components/UserEditor';
 import { get } from '../utils/request';
 

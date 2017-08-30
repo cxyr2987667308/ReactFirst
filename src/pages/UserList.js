@@ -1,5 +1,4 @@
 import React from 'react';
-import HomeLayout from '../layouts/HomeLayout';
 import { get, del } from '../utils/request';
 
 class UserList extends React.Component{

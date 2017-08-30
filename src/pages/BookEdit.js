@@ -1,5 +1,4 @@
 import React from 'react';
-import HomeLayout from '../layouts/HomeLayout';
 import BookEditor from '../components/BookEditor';
 import { get } from '../utils/request';
 

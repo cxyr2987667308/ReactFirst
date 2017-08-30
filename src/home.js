@@ -6,11 +6,11 @@ import HomeLayout from './layouts/HomeLayout';
 class Home extends React.Component{
 	render(){
 		const { location } = this.props;console.log('props',this.props);
-		let currentPage = routes.find((value) => {
-			return value.path == location.pathname;
-		});
+		// let currentPage = '00' routes.find((value) => {
+		// 	return value.path == location.pathname;
+		// });
 		return(
-			<HomeLayout title={currentPage.title}>
+			<HomeLayout>
 				<Switch>
 					{
 						routes.map((item, i) => {

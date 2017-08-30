@@ -1,8 +1,9 @@
 import React from 'react';
-import HomeLayout from '../layouts/HomeLayout';
-import FormItem from '../components/FormItem';
-import {post} from '../utils/request';
-import formProvider from '../utils/formProvider';
+import { Icon, Form, Input, Button, message } from 'antd';
+import { post } from '../utils/request';
+import style from '../styles/login-page.less';
+
+const FormItem = Form.Item;
 
 class Login extends React.Component{
 	constructor(){

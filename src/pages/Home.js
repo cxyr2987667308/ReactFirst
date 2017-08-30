@@ -1,13 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import style from '../styles/home-page.less'
 
 class Home extends React.Component{
 	render(){
 		return(
-			<div>
-				<Link to="/user/list">用户列表</Link>
-				<br/>
-				<Link to="/book/list">图书列表</Link>
+			<div className={style.welcome}>
+				Welcome
 			</div>
 		)
 	}
