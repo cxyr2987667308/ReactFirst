@@ -13,7 +13,7 @@ class UserEdit extends React.Component{
 	componentWillMount(){
 		const userId = this.props.match.params.id;
 		get('http://localhost:8080/user/'+userId)
-		.then(res => {
+		.then(res => {console.log('res',res);
 			this.setState({
 				user: res
 			})

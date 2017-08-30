@@ -1,4 +1,5 @@
 import React from 'react';
+import {message, Table, Button, Popconfirm} from 'antd';
 import { get, del } from '../utils/request';
 
 class BookList extends React.Component{
@@ -20,40 +21,35 @@ class BookList extends React.Component{
 
 	render(){
 		const {bookList} = this.state;
-		return(
-			<table>
-				<thead>
-					<tr>
-						<th>图书ID</th>
-						<th>书名</th>
-						<th>价格</th>
-						<th>所有者ID</th>
-						<th>操作</th>
-					</tr>
-				</thead>
 
-				<tbody>
-					{
-						(bookList||[]).map((book) => {
-							return(
-								<tr key={book.id}>
-									<td>{book.id}</td>
-									<td>{book.name}</td>
-									<td>&yen;{book.price}</td>
-									<td>{book.owner_id}</td>
-									<td>
-										<a href="javascript:void(0)" onClick={() => this.handleAdd()}>新增</a>
-										&nbsp;
-										<a href="javascript:void(0)" onClick={() => this.handleEdit(book)}>编辑</a>
-										&nbsp;
-										<a href="javascript:void(0)" onClick={() => this.handleDel(book)}>删除</a>
-									</td>
-								</tr>
-							)
-						})
-					}
-				</tbody>
-			</table>
+		const columns = [
+			{
+				title: '图书ID',
+				dataIndex: 'id'
+			},{
+				title: '书名',
+				dataIndex: 'name'
+			},{
+				title: '价格',
+				dataIndex: 'price',
+				render: (text, record) => <span>&yen;{record.price}</span>
+			},{
+				title: '所有者ID',
+				dataIndex: 'owner_id'
+			},{
+				title: '操作',
+				render: (text, record) => (
+					<Button.Group type="ghost">
+						<Button size="small" onClick={() => this.handleEdit(record)}>编辑</Button>
+						<Popconfirm title="确定要删除吗?" onConfirm={() => this.handleDel(record)}>
+							<Button size="small">删除</Button>
+						</Popconfirm>
+					</Button.Group>
+				)
+			}
+		]
+		return(
+			<Table columns={columns} dataSource={bookList} rowKey={row => row.id}/>
 		)
 	}
 
@@ -66,19 +62,17 @@ class BookList extends React.Component{
 	}
 
 	handleDel = (book) => {
-		const confirmed = confirm(`确定要删除图书 ${book.name} 吗?`);
-
 		if(confirmed){
 			del('http://localhost:8080/book/'+book.id)
 			.then(res => {
 				this.setState({
 					bookList: this.state.bookList.filter(item => item.id !== book.id)
 				});
-				console.log('删除图书成功');
+				message.success('删除图书成功');
 			})
 			.catch(err => {
 				console.error(err);
-				console.log('删除图书失败');
+				message.error('删除图书失败');
 			})
 		}
 	}

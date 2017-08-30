@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import {Input} from 'antd';
 import style from '../styles/auto-complete.less';
 
 function getItemValue (item) {
@@ -10,20 +11,19 @@ class AutoComplete extends React.Component {
     super(props);
 
     this.state = {
+      show: false, // 新增的下拉框显示控制开关
       displayValue: '',
       activeItemIndex: -1
     };
-
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleLeave = this.handleLeave.bind(this);
   }
 
-  handleChange (value) {
+  handleChange = (value) => {
     this.setState({activeItemIndex: -1, displayValue: ''});
-    this.props.onValueChange(value);
+    // 原来的onValueChange改为了onChange以适配antd的getFieldDecorator
+    this.props.onChange(value);
   }
 
-  handleKeyDown (e) {
+  handleKeyDown = (e) => {
     const {activeItemIndex} = this.state;
     const {options} = this.props;
 
@@ -45,7 +45,7 @@ class AutoComplete extends React.Component {
     }
   }
 
-  moveItem (direction) {
+  moveItem = (direction) => {
     const {activeItemIndex} = this.state;
     const {options} = this.props;
     const lastIndex = options.length - 1;
@@ -74,26 +74,28 @@ class AutoComplete extends React.Component {
     });
   }
 
-  handleEnter (index) {
+  handleEnter = (index) => {console.log('currentItem',currentItem);
     const currentItem = this.props.options[index];
     this.setState({activeItemIndex: index, displayValue: getItemValue(currentItem)});
   }
 
-  handleLeave () {
+  handleLeave = () => {
     this.setState({activeItemIndex: -1, displayValue: ''});
   }
 
   render () {
-    const {displayValue, activeItemIndex} = this.state;
+    const {show, displayValue, activeItemIndex} = this.state;
     const {value, options} = this.props;
     return (
       <div className={style.wrapper}>
-        <input
+        <Input
           value={displayValue || value}
           onChange={e => this.handleChange(e.target.value)}
-          onKeyDown={this.handleKeyDown}
+          onKeyDown={this.handleKeyDown} 
+          onFocus={() => this.setState({show: true})} 
+          onBlur={() => this.setState({show: false})}
         />
-        {options.length > 0 && (
+        {show && options.length > 0 && (
           <ul className={style.options} onMouseLeave={this.handleLeave}>
             {
               options.map((item, index) => {
@@ -116,10 +118,12 @@ class AutoComplete extends React.Component {
   }
 }
 
+// 由于使用了antd的form.getFieldDecorator来包装组件
+// 这里取消了原来props的isRequire约束以防止报错
 AutoComplete.propTypes = {
-  value: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
-  onValueChange: PropTypes.func.isRequired
+  value: PropTypes.any,
+  options: PropTypes.array,
+  onChange: PropTypes.func // 原来的onValueChange改为了onChange以适配antd的getFieldDecorator
 };
 
 export default AutoComplete;

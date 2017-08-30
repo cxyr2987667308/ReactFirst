@@ -13,67 +13,71 @@ class Login extends React.Component{
 	handleSubmit = (e) => {
 		e.preventDefault();
 
-		const {formValid, form: {account, password}} = this.props;
-		if(!formValid){
-			console.log('请输入账号或密码');
-			return;
-		}
-		
-		post('http://localhost:8080/login', {
-			account: account.value,
-			password: password.value
-		})
-		.then((res) => {
-			if(res){
-				this.props.history.push('/');
-			}else{
-				console.log('登录失败，账号或密码错误');
+		this.props.form.validateFields((err, values) => {
+			if(!err){
+				post('http://localhost:8080/login', values)
+				.then((res) => {
+					if(res){
+						message.info('登录成功');
+						this.props.history.push('/');
+					}else{
+						message.info('登录失败，账号或密码错误');
+					}
+				})
 			}
 		})
 	}
 
 	render(){
-		const {form: {account, password}, onFormChange} = this.props;
+		const {form} = this.props;
+		const {getFieldDecorator} = form;
 		return(
-			<HomeLayout title="请登录">
-				<form onSubmit={this.handleSubmit}>
-					<FormItem label="账号:" valid={account.valid} error={account.error}>
-						<input type="text" value={account.value} onChange={e => onFormChange('account', e.target.value)} />
-					</FormItem>
-					<FormItem label="密码:" valid={password.valid} error={password.error}>
-						<input type="password" value={password.value} onChange={e => onFormChange('password', e.target.value)} />
-					</FormItem>
-					<br/>
-					<input type="submit" value="登录"/>
-				</form>
-			</HomeLayout>
+			<div className={style.wrapper}>
+				<div className={style.body}>
+					<header className={style.header}>
+						ReactManager
+					</header>
+
+					<section className={style.form}>
+						<Form onSubmit={this.handleSubmit}>
+							<FormItem>
+								{
+									getFieldDecorator('account',{
+										rules: [
+											{
+												required: true,
+												message: '请输入管理里员账号',
+												type: 'string'
+											}
+										]
+									})(
+										<Input type="text" addonBefore={<Icon type="user"/>}/>
+								)}
+							</FormItem>
+							<FormItem>
+								{
+									getFieldDecorator('password',{
+										rules: [
+											{
+												required: true,
+												message: '请输入密码',
+												type: 'string'
+											}
+										]
+									})(
+										<Input type="password" addonBefore={<Icon type="lock"/>}/>
+								)}
+							</FormItem>
+							<br/>
+							<Button className={style.btn} type="primary" htmlType="submit">Sign In</Button>
+						</Form>
+					</section>
+				</div>
+			</div>
 		)
 	}
 }
 
-Login = formProvider({
-	account: {
-		defaultValue: '',
-		rules: [
-			{
-				pattern(value){
-					return value.length > 0;
-				},
-				error: '请输入账号'
-			}
-		]
-	},
-	password: {
-		defaultValue: '',
-		rules: [
-			{
-				pattern(value){
-					return value.length > 0;
-				},
-				error: '请输入密码'
-			}
-		]
-	}
-})(Login);
+Login = Form.create()(Login);
 
 export default Login;
