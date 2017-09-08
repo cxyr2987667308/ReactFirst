@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
+
 export default function request(method, url, body){
+
 	method = method.toUpperCase();
 	if(method === 'GET'){
 		// fetch的GET不允许有body,参数只能放在url中
@@ -18,8 +21,10 @@ export default function request(method, url, body){
 	})
 	.then((res) => {
 		if(res.status === 401){
+			localStorage.setItem('noLogin', true);
 			return Promise.reject('Unauthorized.');
 		}else{
+			localStorage.setItem('noLogin', false);
 			const token =res.headers.get('access-token');
 			if(token){
 				sessionStorage.setItem('access_token', token);

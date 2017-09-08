@@ -12,10 +12,11 @@ class UserList extends React.Component{
 	componentWillMount(){
 		get('http://localhost:8080/user')
 		.then(res => {
+			
 			this.setState({
 				userList: res||[]
 			})
-		}, function(data){
+		}, (data) => {
 			console.log('data',data);
 		})
 	}

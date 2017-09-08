@@ -2,15 +2,20 @@ import React from 'react';
 import { Route, HashRouter, Switch, Link } from 'react-router-dom';
 import { routes } from './routes';
 import HomeLayout from './layouts/HomeLayout';
+import GoLogin from './components/GoLogin';
+import { Modal } from 'antd';
+const confirm =Modal.confirm;
 
 class Home extends React.Component{
 	render(){
-		const { location } = this.props;console.log('props',this.props);
-		// let currentPage = '00' routes.find((value) => {
-		// 	return value.path == location.pathname;
-		// });
+		console.log('noLogin',localStorage.getItem('noLogin'));
+		let noLogin = localStorage.getItem('noLogin');
+		// if(noLogin){
+		// 	this.props.history.push('/login');
+		// }
 		return(
 			<HomeLayout>
+				{!!noLogin&&<GoLogin />}
 				<Switch>
 					{
 						routes.map((item, i) => {
