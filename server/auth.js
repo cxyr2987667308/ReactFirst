@@ -10,6 +10,7 @@ module.exports = function (req, res, next) {
     const expired = now - token > expireTime;
     if (!expired) {
       unauthorized = false;
+      localStorage.removeItem('noLogin');
       res.header('access-token', now);
     }
   }

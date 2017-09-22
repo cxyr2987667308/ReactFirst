@@ -12,7 +12,17 @@ class GoLogin extends React.Component {
     return (
       <div className={style.goLogin}>
 				<div className={style.content}>
-					<Link to="/login">去登录</Link>
+          <div>
+            温馨提示
+          </div>
+          <div>
+            <div>
+              <p>
+                暂未登录，请去登录!!
+              </p>
+              <Link to="/login">去登录</Link>
+            </div>
+          </div>
 				</div>
 			</div>
     );

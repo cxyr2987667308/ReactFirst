@@ -8,11 +8,7 @@ const confirm =Modal.confirm;
 
 class Home extends React.Component{
 	render(){
-		console.log('noLogin',localStorage.getItem('noLogin'));
 		let noLogin = localStorage.getItem('noLogin');
-		// if(noLogin){
-		// 	this.props.history.push('/login');
-		// }
 		return(
 			<HomeLayout>
 				{!!noLogin&&<GoLogin />}
