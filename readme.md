@@ -10,3 +10,6 @@ npm run dev
 
 ### 登录账号、密码
 admin  123456
+
+### 学习心得
+项目是学习了一韬的React实验室的[React全家桶入门],在此学到了很多关于react的的基础知识，引入了Ant Design，同时还学怎么用json server
