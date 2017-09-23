@@ -16,8 +16,6 @@ class UserList extends React.Component{
 			this.setState({
 				userList: res||[]
 			})
-		}, (data) => {
-			console.log('data',data);
 		})
 	}
 

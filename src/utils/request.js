@@ -24,11 +24,11 @@ export default function request(method, url, body){
 			localStorage.setItem('noLogin', true);
 			return Promise.reject('Unauthorized.');
 		}else{
-			localStorage.removeItem('noLogin');
 			const token =res.headers.get('access-token');
 			if(token){
 				sessionStorage.setItem('access_token', token);
 			}
+			localStorage.removeItem('noLogin');
 			return res.json();
 		}
 	})

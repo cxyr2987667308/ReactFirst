@@ -20,7 +20,8 @@ class UserEditor extends React.Component{
 		// see: https//github.com/ant-design/ant-design/issues/4802
 		const {editTarget, form} = this.props;console.log('editTarget',editTarget);
 		if(editTarget){
-			form.setFieldsValue(editTarget);
+			const {id,...rest} = editTarget;
+			form.setFieldsValue(rest);
 		}
 	}
 
