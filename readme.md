@@ -1,5 +1,6 @@
 ### 安装依赖
 npm i
+npm i roadhog -g
 
 ### 启动 json-server
 npm run server
