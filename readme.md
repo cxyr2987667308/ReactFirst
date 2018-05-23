@@ -1,9 +1,11 @@
 ### 安装依赖
 npm i
+
 npm i roadhog -g
 
 ### 启动 json-server
 npm run server
+
 或者 json-server db.json -w -p 3000
 
 ### 启动项目
