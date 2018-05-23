@@ -1,5 +1,5 @@
 import React from 'react';
-import {message, Table, Button, Popconfirm} from 'antd';
+import { message, Table, Button, Popconfirm, Modal } from 'antd';
 import { get, del } from '../utils/request';
 
 class BookList extends React.Component{
@@ -62,6 +62,8 @@ class BookList extends React.Component{
 	}
 
 	handleDel = (book) => {
+		const confirmed = Modal.confirm(`确定要删除图书 ${book.name} 吗?`);
+
 		if(confirmed){
 			del('http://localhost:8080/book/'+book.id)
 			.then(res => {

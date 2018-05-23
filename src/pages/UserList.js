@@ -1,4 +1,5 @@
 import React from 'react';
+import { Modal } from 'antd';
 import { get, del } from '../utils/request';
 
 class UserList extends React.Component{
@@ -67,7 +68,7 @@ class UserList extends React.Component{
 	}
 
 	handleDel = (user) => {
-		const confirmed = confirm(`确定要删除用户 ${user.name} 吗?`);
+		const confirmed = Modal.confirm(`确定要删除用户 ${user.name} 吗?`);
 
 		if(confirmed){
 			del('http://localhost:8080/user/'+user.id)
